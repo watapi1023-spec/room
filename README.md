@@ -17,12 +17,21 @@ Claudeが担当するのは「商品紹介文の下書き作成」と「投稿�
 | Instagram | ママ向け新規アカウント | 開設はご本人が実施（`設計書.md` にチェックリストあり） |
 
 ## 📂 フォルダ構成
+* `input/purchase_history/` : 楽天・Amazonの購入履歴CSVを置く場所（商品候補のネタ出し用）。書き方は `input/purchase_history/README.md` 参照。
 * `input/products/` : 紹介したい商品の情報をここに置く（1商品1ファイル）。書き方は `input/products/README.md` 参照。
+* `output/purchase_candidates_日時.md` : 購入履歴から集計した商品候補一覧（`scripts/analyze_purchase_history.py` が生成）。
 * `output/drafts/` : Claudeが作成した下書き（楽天ROOM紹介文・Instagramキャプション・X投稿文）。
 * `output/posting_log.xlsx` : 投稿管理ログ（`scripts/update_posting_log.py` が自動生成・更新）。
 * `scripts/` : 機械的な集計処理のプログラム。
 
 ## 🔁 使い方（基本フロー）
+0. （任意）「今月は何を紹介するか」のネタ出しをしたい場合：
+   `input/purchase_history/` に楽天・Amazonの購入履歴CSVを置き
+   （書き方は `input/purchase_history/README.md` 参照）、
+   `python3 scripts/analyze_purchase_history.py` を実行する。
+   リピート購入・金額を集計した候補一覧が `output/purchase_candidates_日時.md` に出力されるので、
+   セッションで「この候補から今月の商品を提案して」と依頼すると、ママ向け発信のテーマに
+   合うものをClaudeが絞り込む。
 1. `input/products/` に商品情報ファイルを追加する（`input/products/_template.md` をコピーして使う）。
 2. このリポジトリのセッションで「商品の下書きを作って」と依頼する。
    * Claudeが商品情報を読み、**楽天ROOM紹介文・Instagramキャプション（ハッシュタグ付き）・X投稿文**の下書きを

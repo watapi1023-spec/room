@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+
+# 購入履歴の生データ（家計・個人情報を含むためGit管理しない）
+input/purchase_history/*.csv
+!input/purchase_history/.gitkeep
